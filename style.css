@@ -1,0 +1,209 @@
+/* ===== ОСНОВА ===== */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #111;
+  font-family: sans-serif;
+  color: white;
+}
+
+/* ===== ЗВЁЗДЫ НА ФОНЕ ===== */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, white, transparent),
+    radial-gradient(1px 1px at 80% 40%, white, transparent),
+    radial-gradient(2px 2px at 60% 70%, white, transparent),
+    radial-gradient(1px 1px at 30% 80%, white, transparent),
+    radial-gradient(2px 2px at 90% 20%, white, transparent);
+  background-size: 200px 200px;
+  animation: starsMove 60s linear infinite;
+  opacity: 0.6;
+  z-index: -2;
+}
+
+@keyframes starsMove {
+  from { background-position: 0 0; }
+  to { background-position: 1000px 1000px; }
+}
+
+/* ===== СЕТКА ПИСЕМ ===== */
+.letters-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 28px;
+  padding: 80px;
+  box-sizing: border-box;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.letter-btn {
+  width: 100%;
+  min-height: 120px;
+  padding: 20px;
+  font-size: 16px;
+  border-radius: 22px;
+  background: rgba(255,255,255,0.18);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.3);
+  color: white;
+  cursor: pointer;
+  position: relative;
+}
+
+.letter-btn:hover {
+  transform: translateY(-4px) scale(1.02);
+  box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+}
+
+.letter-btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Замок на закрытых письмах */
+.letter-btn.locked::after {
+  content: "🔒";
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  font-size: 20px;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+/* ===== КНОПКА МУЗЫКИ ===== */
+.music-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 10;
+  padding: 12px 18px;
+  font-size: 15px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.55);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.4);
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.music-btn:hover {
+  transform: scale(1.08);
+  background: rgba(0,0,0,0.75);
+}
+
+/* ===== МОДАЛКИ ===== */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 20;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.8);
+}
+
+.modal-content {
+  background-color: #222;
+  margin: 10% auto;
+  padding: 20px;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  position: relative;
+}
+
+.modal-content .close {
+  color: white;
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.modal-content .close:hover {
+  color: #ccc;
+}
+
+/* ===== ФОТОКИ НА ФОНЕ ===== */
+.background-photos {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  pointer-events: none;
+}
+
+.background-photos img {
+  width: 180px;   /* можно уменьшить/увеличить */
+  height: auto;
+  margin: 12px;
+  border-radius: 12px;
+  opacity: 0.85;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, white, transparent),
+    radial-gradient(1px 1px at 80% 40%, white, transparent),
+    radial-gradient(2px 2px at 60% 70%, white, transparent),
+    radial-gradient(1px 1px at 30% 80%, white, transparent),
+    radial-gradient(2px 2px at 90% 20%, white, transparent);
+  background-size: 200px 200px;
+  animation: starsMove 60s linear infinite;
+  opacity: 0.6;
+  z-index: -2;
+}
+
+@keyframes starsMove {
+  from { background-position: 0 0; }
+  to { background-position: 1000px 1000px; }
+}
+/* ===== Фотки на фоне ===== */
+.background-photos {
+  position: fixed;      /* фиксируем на экране */
+  inset: 0;             /* сверху/снизу/слева/справа 0 */
+  z-index: -1;          /* под письмами */
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  pointer-events: none; /* чтобы фотки не мешали клику по письмам */
+}
+
+.background-photos img {
+  width: 120px;        /* можно уменьшить, чтобы не было гигантских */
+  height: auto;
+  margin: 12px;
+  border-radius: 12px;
+  opacity: 0.6;
+  transform: translateY(0);
+  animation: floatUp 40s linear infinite;  /* анимация вверх */
+}
+
+/* Анимация плавного движения фоток вверх */
+@keyframes floatUp {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-1000px); } /* регулируешь по высоте */
+}
+
+.letter-container {
+  display: none; /* пока не введён пароль */
+}
