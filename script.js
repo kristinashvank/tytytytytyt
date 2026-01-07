@@ -86,22 +86,7 @@ window.addEventListener("click", (e) => {
   });
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-  const correctPassword = "1234"; // сюда вставь свой пароль
-  const passwordButton = document.getElementById("password-button");
-  const passwordInput = document.getElementById("password-input");
-  const letters = document.querySelector(".letter-container");
-  const passwordContainer = document.getElementById("password-container");
 
-  passwordButton.addEventListener("click", () => {
-    if(passwordInput.value === correctPassword){
-      passwordContainer.style.display = "none"; // скрываем поле
-      letters.style.display = "flex"; // показываем письма
-    } else {
-      alert("Неверный пароль!");
-    }
-  });
-});
 
 
 
