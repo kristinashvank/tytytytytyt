@@ -1,16 +1,4 @@
 
-// 🔐 ПАРОЛЬ
-function checkPassword() {
-  const pass = document.getElementById("password").value;
-  const correct = "125512"; // 🔴 можешь поменять пароль
-
-  if (pass === correct) {
-    localStorage.setItem("access", "yes");
-    window.location.href = "home.html";
-  } else {
-    document.getElementById("error").innerText = "Думай роднусь";
-  }
-}
 
 // ⛔ защита страниц
 if (window.location.pathname.includes("home")) {
@@ -40,22 +28,7 @@ document.querySelectorAll(".event-btn").forEach(btn => {
   });
 });
 
-// 🔊 Кнопка музыки
-const musicBtn = document.getElementById("musicBtn");
-const music = document.getElementById("music");
 
-let isPlaying = false;
-
-musicBtn.addEventListener("click", () => {
-  if (!isPlaying) {
-    music.play();
-    musicBtn.textContent = "⏸ Пауза";
-  } else {
-    music.pause();
-    musicBtn.textContent = "🎵 Музыка";
-  }
-  isPlaying = !isPlaying;
-});
 
 
 // Закрытие по крестику
@@ -87,19 +60,7 @@ document.querySelectorAll('.letter-btn[data-date]').forEach(btn => {
     btn.classList.remove('locked');
   }
 });
-// ===== МУЗЫКА =====
-const musicBtn = document.querySelector(".music-btn");
-const audio = document.getElementById("click-sound");
 
-musicBtn.addEventListener("click", () => {
-  if(audio.paused){
-    audio.play();
-    musicBtn.textContent = "🔊"; // иконка включено
-  } else {
-    audio.pause();
-    musicBtn.textContent = "🔇"; // иконка выключено
-  }
-});
 
 // ===== МОДАЛКИ =====
 const buttons = document.querySelectorAll(".letter-btn");
@@ -141,5 +102,6 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 });
+
 
 
